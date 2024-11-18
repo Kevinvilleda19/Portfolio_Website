@@ -1,0 +1,6 @@
+[build]
+  command = "npm run build" # or "vite build" if applicable
+  publish = "dist"          # for Vite, use "build" for React
+
+[build.environment]
+  NODE_VERSION = "18"
