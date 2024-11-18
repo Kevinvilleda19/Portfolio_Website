@@ -9,16 +9,14 @@ function Projects() {
       image: "https://i.postimg.cc/mkrj2zx1/Vista-Mart-logo.png",
       technologies: ["React", "Tailwind CSS", "Flask", "3D Models", "Augmented Reality (AR)"],
       githubUrl: "https://github.com/Kevinvilleda19/VistaMart",
-      liveUrl: "https://vista-mart.live",
     },
     {
       title: "FreelanceFlow",
       description:
         "A management tool for freelancers to track projects, clients, and finances.",
-      image: "https://via.placeholder.com/300",
+      image: "https://i.postimg.cc/2yN3v6m0/DALL-E-2024-11-18-18-46-14-A-sleek-and-modern-logo-for-Freelance-Flow-featuring-a-vibrant-swirl-de.webp",
       technologies: ["Python", "SQL"],
       githubUrl: "https://github.com/Kevinvilleda19/Freelancer-Job-Management-System",
-      liveUrl: "https://freelanceflow.live",
     },
     {
       title: "LaneMastery.gg",
@@ -79,14 +77,16 @@ function Projects() {
                   >
                     GitHub
                   </a>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 transition-transform transform hover:scale-105"
-                  >
-                    Live Demo
-                  </a>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 transition-transform transform hover:scale-105"
+                    >
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
