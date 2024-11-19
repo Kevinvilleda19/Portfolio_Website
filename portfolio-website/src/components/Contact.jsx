@@ -30,7 +30,9 @@ const Contact = () => {
             {/* Phone Section */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
               <Phone className="w-12 h-12 text-blue-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-blue-500 mb-4">Phone</h3>
+              <h3 className="text-xl font-semibold mb-2 text-blue-500 mb-4">
+                Phone
+              </h3>
               <a
                 href="tel:+19142080322"
                 className="text-gray-300 hover:text-green-500 transition-colors"
@@ -43,7 +45,9 @@ const Contact = () => {
             {/* Location Section */}
             <div className="flex flex-col items-center p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
               <MapPin className="w-12 h-12 text-blue-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-blue-500 mb-4">Location</h3>
+              <h3 className="text-xl font-semibold mb-2 text-blue-500 mb-4">
+                Location
+              </h3>
               <p className="text-gray-300 text-center">
                 Peekskill, NY
                 <br />
@@ -81,23 +85,33 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <form className="space-y-6">
+          <form
+            action="https://formspree.io/f/xeoqzavv"
+            method="POST"
+            className="space-y-6"
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 type="text"
+                name="name"
                 placeholder="Your Name"
                 className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:ring-2 focus:ring-blue-500 outline-none"
+                required
               />
               <input
                 type="email"
+                name="email"
                 placeholder="Your Email"
                 className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:ring-2 focus:ring-green-500 outline-none"
+                required
               />
             </div>
             <textarea
+              name="message"
               placeholder="Your Message"
               rows="5"
               className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:ring-2 focus:ring-purple-500 outline-none"
+              required
             ></textarea>
             <button
               type="submit"
