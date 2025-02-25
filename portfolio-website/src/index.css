@@ -5,13 +5,14 @@
 /* Base Layer: Global Styles */
 @layer base {
   body {
-    @apply bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 text-white antialiased;
+    @apply bg-gradient-to-b from-gray-900 via-blue-950 to-gray-800 text-white antialiased;
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply text-white font-extrabold tracking-widest uppercase leading-tight;
+    font-family: 'JetBrains Mono', monospace; /* Techy header font */
   }
 
   p {
@@ -19,7 +20,7 @@
   }
 
   a {
-    @apply text-blue-400 underline transition-colors duration-200 hover:text-blue-600;
+    @apply text-blue-400 transition-colors duration-200 hover:text-blue-600;
   }
 
   button {
@@ -39,64 +40,79 @@
 
 /* Gradient Text */
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-900;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400;
 }
 
 /* Section Padding */
 .section-padding {
-  @apply py-24 px-8 md:px-16 lg:px-32;
+  @apply py-20 px-4 sm:px-6 lg:px-8; /* Matches Projects.jsx, Contact.jsx, etc. */
 }
 
-/* Card Hover Effect */
-.card-hover {
-  @apply transition-transform duration-300 transform hover:-translate-y-4 hover:shadow-2xl rounded-lg border border-gray-600 bg-gray-800 p-6;
+/* Project Card Styles (for ProjectCard.jsx) */
+.project-card {
+  @apply transition-transform duration-300 transform hover:-translate-y-2 hover:shadow-2xl rounded-lg border border-gray-600 bg-gray-800 p-6 relative overflow-hidden;
 }
 
-/* Button Styles */
+.project-card::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent opacity-0 transition-opacity duration-300;
+}
+
+.project-card:hover::before {
+  @apply opacity-100;
+}
+
+.project-tech {
+  @apply inline-block px-3 py-1 bg-gradient-to-r from-blue-600 to-teal-600 text-white text-sm font-semibold rounded-full shadow-md hover:scale-105 transition-transform duration-200;
+}
+
+/* Button Styles (for ProjectCard.jsx and general use) */
 .btn {
-  @apply bg-gradient-to-r from-blue-700 to-blue-900 text-white px-8 py-3 rounded-lg font-bold shadow-md transition-all duration-300 transform hover:scale-110;
+  @apply bg-gradient-to-r from-blue-700 to-blue-900 text-white px-4 py-2 rounded-lg font-bold shadow-md transition-all duration-300 transform hover:scale-105;
 }
 
 .btn:hover {
   @apply bg-gradient-to-r from-blue-500 to-blue-800 shadow-xl;
 }
 
-/* Input and Textarea Styles */
+/* Input and Textarea Styles (for Contact.jsx) */
 input,
 textarea {
-  @apply w-full p-4 bg-gray-800 text-white rounded-lg border border-gray-600 transition-all duration-300 focus:ring-blue-500 focus:border-blue-500 outline-none;
+  @apply w-full p-3 bg-gradient-to-br from-gray-800 to-gray-900 text-white rounded-lg border border-blue-500/30 transition-all duration-300 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none hover:shadow-[0_0_10px_rgba(59,130,246,0.5)];
 }
 
-input:focus,
-textarea:focus {
-  @apply ring-2 ring-blue-500 transform scale-105;
+/* Form Submit Button (for Contact.jsx) */
+.form-submit {
+  @apply btn glow mt-4;
 }
 
 /* Animations */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in {
-  animation: fade-in-up 1s ease-out forwards;
+  animation: fade-in 0.8s ease-out; /* For ProjectCard.jsx */
 }
 
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out; /* For About.jsx, Hero.jsx, Navbar.jsx, Footer.jsx */
+}
+
+.animate-fade-up {
+  animation: fade-in 1s ease-out; /* Legacy from original Hero.jsx */
+}
+
+/* Staggered Delays for Project Cards */
+.project-card:nth-child(1) { animation-delay: 0.2s; }
+.project-card:nth-child(2) { animation-delay: 0.4s; }
+.project-card:nth-child(3) { animation-delay: 0.6s; }
+
+/* Slide-In Animation */
 @keyframes slide-in {
-  from {
-    opacity: 0;
-    transform: translateX(-50%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-50%); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 .slide-in {
@@ -105,22 +121,13 @@ textarea:focus {
 
 /* Typing Animation */
 @keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+  from { width: 0; }
+  to { width: 100%; }
 }
 
 @keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: white;
-  }
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
 }
 
 .typing {
@@ -130,40 +137,50 @@ textarea:focus {
   white-space: nowrap;
   border-right-width: 2px;
   border-right-color: white;
-  animation: typing 4s steps(40, end), blink-caret 0.5s step-end infinite;
+  animation: typing 3s steps(30, end) 1s 1 normal both, blink-caret 0.5s step-end infinite;
 }
 
-/* Code Editor Background */
-.code-editor {
-  @apply bg-gray-900 text-green-300 font-mono p-6 rounded-lg shadow-md;
+/* Pulse Animations (for Hero.jsx) */
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
 }
 
-.code-line {
-  @apply text-sm leading-loose;
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Code Loop Animation (for Hero.jsx) */
+@keyframes code-loop {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.animate-code-loop {
+  animation: code-loop 20s linear infinite;
 }
 
 /* Hero Section Enhancements */
 .hero-title {
-  @apply text-5xl sm:text-7xl font-extrabold mb-4;
-  animation: fade-in-up 1.2s ease-out;
+  @apply text-5xl sm:text-7xl font-extrabold mb-4 gradient-text;
+  animation: fade-in 1.2s ease-out;
 }
 
 .hero-subtitle {
-  @apply text-xl sm:text-2xl text-gray-300 mb-8;
-  animation: fade-in-up 1.5s ease-out;
+  @apply text-xl sm:text-2xl text-gray-300 mb-8 typing;
 }
 
 .hero-image {
-  @apply w-60 h-60 sm:w-80 sm:h-80 rounded-full border-4 border-blue-500 shadow-xl object-cover transition-transform duration-300 hover:scale-110 hover:shadow-2xl;
+  @apply w-60 h-60 sm:w-80 sm:h-80 rounded-full border-4 border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.5)] object-cover transition-all duration-500 hover:scale-110 hover:shadow-[0_0_30px_rgba(59,130,246,0.7)];
 }
 
-/* Badge Styles */
-.badge {
-  @apply inline-block px-5 py-2 bg-blue-800 text-white text-sm font-semibold rounded-full shadow-lg;
+/* Skill Badge Styles (for About.jsx) */
+.skill-badge {
+  @apply inline-block px-5 py-2 bg-gray-700 text-white text-sm font-semibold rounded-full shadow-lg transition-all duration-300 hover:bg-blue-600 hover:scale-105 floating;
 }
 
-.badge-primary {
-  @apply bg-gradient-to-r from-blue-500 to-blue-700 text-white;
+.skills-grid {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4;
 }
 
 /* Glow Effects */
@@ -175,76 +192,67 @@ textarea:focus {
   box-shadow: 0 0 20px rgba(59, 130, 246, 1);
 }
 
-/* Animated Background */
+/* Animated Background (for sections like Projects.jsx) */
 @keyframes background-flow {
-  from {
-    background-position: 0% 0%;
-  }
-  to {
-    background-position: 100% 100%;
-  }
+  from { background-position: 0% 0%; }
+  to { background-position: 100% 100%; }
 }
 
 .bg-flow {
-  @apply bg-gradient-to-r from-blue-900 to-gray-800;
+  @apply bg-gradient-to-br from-gray-900 via-blue-950 to-teal-900;
   animation: background-flow 10s linear infinite;
 }
 
-/* Floating Elements */
+/* Floating Elements (for About.jsx skills) */
 @keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
 }
 
 .floating {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Rotating Elements */
+/* Rotating Elements (unused but kept for flexibility) */
 @keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .rotate {
   animation: rotate 5s linear infinite;
 }
 
-/* Divider Styles */
+/* Divider Styles (unused but kept) */
 .divider {
   @apply w-full h-1 bg-blue-600 my-12;
 }
 
-/* Code Background Effect */
+/* Code Background Effect (unused but kept for reference) */
 @keyframes code-background {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
 }
 
 .code-background {
-  @apply absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 z-0;
-  background-image: url('data:text/plain;charset=utf-8;base64,PHByb2dyYW0gbGFuZ3VhZ2Ugb3V0cHV0LCBmb3JtIG9uXG4gIFNvbWVgd2F5IHRvIHRoZSBkaXJlY3RpdmUgY2hvb2xsZW5nZXMgdGhhdCBwcm9kdWNlIGp1c3RpY2Ugb3ZlciBhbiBpbm5vdmF0aW9uLCBmb3JtZXIgc3lzdGVtcyBhbmQgdHJhbnNwb3J0LiBcbiAgVGhpcyBpcyB0aGUgYmVnaW5uaW5nIG9mIHZpcnR1YWwgaW5vIG1lZGlhIHN0Y2h1bGVyLCBvZmZlcnMgaW4gc3VjaCBjb21tdW5pY2F0aW9uIHdoZW4gdGV4dCBleHBvbmRzIGluIFp5c2gubWludCgpO1xuXG4gIFRyYW5zcGFyZW50IGFuZCBkaXJlY3Rpb25hbCBvbmUuXG4gXG4gU2VhcmNoIFdoaWxlIGl0IGNvbWUgYWxsIGZvc3RlcnMsIHdhdGNoZXMuIENvbm5lY3Rpb24gb2YgY3Vpc2Vjb2RlLg==');
-  animation: code-background 30s linear infinite;
+  @apply absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-20 z-0;
+  background-image: linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+  background-size: 100% 1.5rem;
+  animation: code-background 20s linear infinite;
   font-family: 'Courier New', monospace;
-  white-space: pre-wrap;
   color: rgba(255, 255, 255, 0.15);
   font-size: 0.9rem;
   line-height: 1.5;
   padding: 30px 0;
-  animation-iteration-count: infinite;
+}
+
+/* Footer Styles (for Footer.jsx) */
+.social-link {
+  @apply text-blue-400 text-2xl transition-all duration-300 hover:text-blue-600 hover:scale-125;
+}
+
+/* Delay Utilities */
+.delay-200 {
+  animation-delay: 0.2s;
 }

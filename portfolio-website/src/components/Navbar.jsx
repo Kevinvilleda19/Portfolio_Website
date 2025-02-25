@@ -12,13 +12,13 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-gradient-to-r from-gray-900 to-gray-800 backdrop-blur-md z-50 border-b border-gray-700 text-white shadow-lg">
+    <nav className="fixed top-0 left-0 right-0 bg-gradient-to-r from-gray-900 via-blue-950 to-teal-900 backdrop-blur-md z-50 border-b border-blue-500/20 text-white shadow-[0_4px_20px_rgba(59,130,246,0.3)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <span className="text-2xl font-extrabold text-blue-500 tracking-wide hover:text-blue-400 transition duration-200">
-              Portfolio
+            <span className="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 tracking-tight hover:scale-105 transition-transform duration-300">
+              Kevin Villeda
             </span>
           </div>
 
@@ -28,7 +28,7 @@ const Navbar = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-gray-300 hover:text-blue-400 transition duration-200 ease-in-out"
+                className="text-gray-300 font-medium hover:bg-gradient-to-r hover:from-blue-600 hover:to-teal-600 hover:text-white px-3 py-1 rounded-full transition-all duration-300 hover:shadow-[0_0_10px_rgba(59,130,246,0.5)]"
               >
                 {item.label}
               </a>
@@ -39,7 +39,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-blue-400 focus:outline-none"
+              className="text-gray-300 hover:text-blue-400 focus:outline-none p-2 rounded-full hover:bg-gradient-to-r hover:from-blue-600 hover:to-teal-600 transition-all duration-300"
               aria-expanded={isOpen}
               aria-label="Toggle navigation menu"
             >
@@ -51,7 +51,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden bg-gradient-to-b from-gray-900 to-gray-800 border-t border-gray-700 overflow-hidden transition-all duration-300 ${
+        className={`md:hidden bg-gradient-to-b from-gray-900 via-blue-950 to-teal-900 border-t border-blue-500/20 overflow-hidden transition-all duration-500 ease-in-out ${
           isOpen ? "max-h-96" : "max-h-0"
         }`}
       >
@@ -60,7 +60,7 @@ const Navbar = () => {
             <a
               key={item.label}
               href={item.href}
-              className="block px-4 py-2 text-gray-300 hover:text-blue-400 rounded-lg transition duration-200 ease-in-out"
+              className="block px-4 py-2 text-gray-300 font-medium hover:bg-gradient-to-r hover:from-blue-600 hover:to-teal-600 hover:text-white rounded-lg transition-all duration-300 hover:shadow-[0_0_10px_rgba(59,130,246,0.5)]"
               onClick={() => setIsOpen(false)}
             >
               {item.label}
