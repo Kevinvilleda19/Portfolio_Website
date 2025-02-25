@@ -61,7 +61,7 @@ const About = () => {
         </h2>
         <div className="max-w-3xl mx-auto text-center mb-16">
           <p className="text-lg leading-relaxed text-gray-300 animate-fade-in delay-200 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400 font-mono tracking-wide">
-            Hey there! I’m a full-stack dev who loves tackling big challenges with slick code.
+            Hey there! I’m a Software Engineer who loves tackling big challenges with slick code.
             I’ve built stuff like AlgoAura—an AI coding assistant—and Vista Mart, an AR-powered
             e-commerce platform, proving I can deliver next-level tech that works and wows.
             I’m all about crafting fast, user-friendly solutions with React, Flask, and a toolbox

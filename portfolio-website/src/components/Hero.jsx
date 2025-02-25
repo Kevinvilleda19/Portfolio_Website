@@ -63,7 +63,7 @@ const Hero = () => {
           Hey, I’m Kevin Villeda
         </h1>
         <p className="text-lg sm:text-xl text-gray-300 mb-6 font-mono tracking-wide animate-fade-in delay-200">
-          Full-Stack Developer | Turning Ideas into Next-Gen Apps
+         Software Engineer| Turning Ideas into Next-Gen Apps
         </p>
 
         {/* Profile Picture */}
